@@ -1,4 +1,5 @@
 import user from "./user.js"
+import UserService from "./UserService.js"
 
 class UserController{
     async create(req, res){
@@ -11,16 +12,7 @@ class UserController{
                     salary,
                     company_name,
                     job_title} = req.body
-                    const user_data = await user.create(
-                    {   
-                        age,
-                        creatted_date,
-                        updatted_date,
-                        stack_technology,
-                        salary,
-                        company_name,
-                        job_title
-                    })
+                    const user_data = await UserService.create(req.body)
                     res.json(user_data)
             }
             catch(e){
@@ -29,7 +21,7 @@ class UserController{
     }
     async getAll(req,res){
         try{
-            const users_data = await user.find();
+            const users_data = await UserService.getAll();
             return res.json(users_data);
         }
         catch(e){
@@ -38,11 +30,7 @@ class UserController{
     }
     async getOne(req,res){
         try{
-            const {id} = req.params;
-            if(!id){
-                res.status(400).json({message: "id dont found"})
-            }
-            const user_data = await user.findById(id);
+            const user_data = await UserService.getOne(req.params.id);
             return res.json(user_data)
         }
         catch(e){
@@ -51,24 +39,16 @@ class UserController{
     }
     async update(req,res){
         try{
-            const user_data = req.body
-            if(!user_data._id) {
-                res.status(400).json({message: "id dont found"})
-            } 
-            const updatedData = await user.findByIdAndUpdate(user_data._id,user_data,{new: true})
+            const updatedData = await UserService.update(req.body)
             return res.json(updatedData)
         }
         catch(e){
-            res.status(500).json(e)
+            res.status(500).json(e.message)
         }
     }
     async delete(req,res){
         try{
-            const {id} = req.params
-            if(!id){
-                res.status(400).json({message: "id dont found"})
-            }
-            const user_data = await user.findByIdAndRemove(id);
+            const user_data = await UserService.delete(req.params.id);
             return res.json(user_data)
         }
         catch(e){
