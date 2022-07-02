@@ -1,18 +1,10 @@
-import user from "./user.js"
-import UserService from "./UserService.js"
+import UserDataService from "./UserDataService.js"
 
 class UserController{
     async create(req, res){
             try{
-                const {
-                    age,
-                    creatted_date,
-                    updatted_date,
-                    stack_technology,
-                    salary,
-                    company_name,
-                    job_title} = req.body
-                    const user_data = await UserService.create(req.body)
+                
+                    const user_data = await UserDataService.create(req.body)
                     res.json(user_data)
             }
             catch(e){
@@ -21,7 +13,7 @@ class UserController{
     }
     async getAll(req,res){
         try{
-            const users_data = await UserService.getAll();
+            const users_data = await UserDataService.getAll();
             return res.json(users_data);
         }
         catch(e){
@@ -30,7 +22,7 @@ class UserController{
     }
     async getOne(req,res){
         try{
-            const user_data = await UserService.getOne(req.params.id);
+            const user_data = await UserDataService.getOne(req.params.id);
             return res.json(user_data)
         }
         catch(e){
@@ -39,7 +31,7 @@ class UserController{
     }
     async update(req,res){
         try{
-            const updatedData = await UserService.update(req.body)
+            const updatedData = await UserDataService.update(req.body)
             return res.json(updatedData)
         }
         catch(e){
@@ -48,7 +40,7 @@ class UserController{
     }
     async delete(req,res){
         try{
-            const user_data = await UserService.delete(req.params.id);
+            const user_data = await UserDataService.delete(req.params.id);
             return res.json(user_data)
         }
         catch(e){

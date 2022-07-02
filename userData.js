@@ -1,8 +1,8 @@
 import mongoose from "mongoose";
 
-const User = new mongoose.Schema({
-    age: {type: Number},
-    creattesd_date: {type: Date},
+const UserData = new mongoose.Schema({
+    age: {type: Number, required: true},
+    creatted_date: {type: Date},
     updatted_date: {type:Date, default: Date.now},
     stack_technology: [String],
     salary: {type: Number},
@@ -11,4 +11,4 @@ const User = new mongoose.Schema({
     verified: {type:Boolean, default: false}
 })
 
-export default mongoose.model("User", User)
+export default mongoose.model("UserData", UserData)

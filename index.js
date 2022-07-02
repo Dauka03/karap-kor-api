@@ -1,13 +1,14 @@
 import  express from "express";
 import mongoose from "mongoose";
 import router from "./router.js";
-
+import authRouter from "./authRouter.js"
 const port = 5000;
 const DB_URL = `mongodb+srv://kara:mHHSizzBSaZwFmBe@cluster0.mmzmfn2.mongodb.net/?retryWrites=true&w=majority`
 const app = express();
 
 app.use(express.json())
 app.use('/api',router)
+app.use('/auth',authRouter)
 
 async function startApp(){
     try{
