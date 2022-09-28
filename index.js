@@ -2,10 +2,12 @@ import  express from "express";
 import mongoose from "mongoose";
 import router from "./router/router.js";
 import authRouter from "./router/authRouter.js"
+import cors from "cors";
 const port = 5000;
 const DB_URL = `mongodb+srv://kara:mHHSizzBSaZwFmBe@cluster0.mmzmfn2.mongodb.net/?retryWrites=true&w=majority`
 const app = express();
 
+app.use(cors())
 app.use(express.json())
 app.use('/api',router)
 app.use('/auth',authRouter)
