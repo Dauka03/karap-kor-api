@@ -13,7 +13,7 @@ app.use('/auth',authRouter)
 async function startApp(){
     try{
         mongoose.connect(DB_URL,{useUnifiedTopology: true, useNewUrlParser: true})
-        app.listen(port, () => console.log("Server started on port" + port))
+        app.listen(process.env.PORT || 5000)
 
     }
     catch(e){
