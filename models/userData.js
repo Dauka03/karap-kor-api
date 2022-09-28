@@ -7,8 +7,13 @@ const UserData = new mongoose.Schema({
     stack_technology: [String],
     salary: {type: Number},
     company_name: {type: String},
-    job_title: {type: String},
-    verified: {type:Boolean, default: false}
+    level_name: {type: String},
+    verified: {type:Boolean, default: false},
+    tag: {type: String},
+    work_arrangement: {type: String, default:'Office'},
+    years_experience_company: {type: Number, default:0},
+    years_experience_total: {type: Number, default: 0}
+
 })
 
 export default mongoose.model("UserData", UserData)

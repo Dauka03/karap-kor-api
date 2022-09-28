@@ -1,5 +1,4 @@
-import userData from "./userData.js";
-import Account from "./Account.js";
+import userData from "./models/userData.js";
 class UserService{
     async create(User){
         const {
@@ -9,14 +8,16 @@ class UserService{
                 stack_technology,
                 salary,
                 company_name,
-                job_title} = User
+                level_name,
+                tag,work_arrangement,years_experience_company,years_experience_total} = User
         const creattedUserData = await userData.create({age,
                 creatted_date,
                 updatted_date,
                 stack_technology,
                 salary,
                 company_name,
-                job_title})
+                level_name,
+                tag,work_arrangement,years_experience_company,years_experience_total})
         return creattedUserData
 } 
 async getAll(){
@@ -43,6 +44,13 @@ async delete(id){
         }
         const data = await userData.findByIdAndRemove(id);
         return data
+}
+async verify(id){
+        if(!id){
+                throw new Error('ID dont found')  
+        }
+        const data = await userData.findByIdAndUpdate(id)
+        return data;
 }
 }
 

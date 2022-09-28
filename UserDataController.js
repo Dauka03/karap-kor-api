@@ -3,7 +3,6 @@ import UserDataService from "./UserDataService.js"
 class UserController{
     async create(req, res){
             try{
-                
                     const user_data = await UserDataService.create(req.body)
                     res.json(user_data)
             }
@@ -44,6 +43,14 @@ class UserController{
             return res.json(user_data)
         }
         catch(e){
+            res.status(500).json(e)
+        }
+    }
+    async verify(req,res){
+        try {
+            const user_data = await UserDataService.verify(req.params.id);
+            return res.json(user_data)
+        } catch (e) {
             res.status(500).json(e)
         }
     }

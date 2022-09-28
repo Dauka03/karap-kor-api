@@ -16,7 +16,6 @@ const generateAccessToken = (id, roles)=>{
 class authController{
     async registration(req, res){
         try { 
-            console.log("A");
             const errors = validationResult(req)
             if(!errors.isEmpty()){
                 return res.status(400).json({message:"Registration error", errors})
